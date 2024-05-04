@@ -1,0 +1,18 @@
+CREATE TABLE PlanetEntity(
+    uid INTEGER PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL
+);
+
+countPlanets:
+SELECT COUNT(*) FROM PlanetEntity;
+
+insertPlanet:
+INSERT OR REPLACE INTO PlanetEntity(uid, name)
+VALUES (?,?);
+
+fetchPlanet:
+SELECT * FROM PlanetEntity
+LIMIT :limit OFFSET :offset;
+
+deleteAllPlanets:
+DELETE FROM PlanetEntity;

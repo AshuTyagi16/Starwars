@@ -1,0 +1,22 @@
+CREATE TABLE PlanetDetailEntity(
+    uid TEXT PRIMARY KEY NOT NULL,
+    climate TEXT NOT NULL,
+    diameter TEXT NOT NULL,
+    gravity TEXT NOT NULL,
+    name TEXT NOT NULL,
+    orbitalPeriod TEXT NOT NULL,
+    population TEXT NOT NULL,
+    rotationPeriod TEXT NOT NULL,
+    surfaceWater TEXT NOT NULL,
+    terrain TEXT NOT NULL
+);
+
+insertPlanetDetail:
+INSERT OR REPLACE INTO PlanetDetailEntity(uid,climate,diameter,gravity,name,orbitalPeriod,population,rotationPeriod,surfaceWater,terrain)
+VALUES (?,?,?,?,?,?,?,?,?,?);
+
+fetchPlanetDetail:
+SELECT * FROM PlanetDetailEntity WHERE uid = ?;
+
+deletePlanetDetail:
+DELETE FROM PlanetDetailEntity WHERE uid = ?;

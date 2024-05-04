@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="planet_name">Planet Name : %s</string>
+    <string name="climate">Climate : %s</string>
+    <string name="diameter">Diameter : %s</string>
+    <string name="gravity">Gravity : %s</string>
+    <string name="orbital_period">Orbital Period : %s</string>
+    <string name="population">Population : %s</string>
+    <string name="rotation_period">Rotation Period : %s</string>
+    <string name="surface_water">Surface Water : %s</string>
+    <string name="terrain">Terrain : %s</string>
+</resources>
