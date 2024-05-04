@@ -55,7 +55,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
     implementation(platform(libs.compose.bom))
-    implementation(libs.activity.compose)
+    implementation(libs.activity.compose) {
+        exclude(group = "androidx.lifecycle", module = "lifecycle-viewmodel-ktx")
+    }
     implementation(libs.bundles.compose.android)
 
     // Core Navigation Module

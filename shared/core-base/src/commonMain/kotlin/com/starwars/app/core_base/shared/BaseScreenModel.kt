@@ -1,7 +1,7 @@
 package com.starwars.app.core_base.shared
 
-import cafe.adriel.voyager.core.model.ScreenModel
-import cafe.adriel.voyager.core.model.screenModelScope
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.starwars.app.core_base.shared.model.UiEffect
 import com.starwars.app.core_base.shared.model.UiEvent
 import com.starwars.app.core_base.shared.model.UiState
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseScreenModel<Event : UiEvent, State : UiState, Effect : UiEffect> : ScreenModel {
+abstract class BaseScreenModel<Event : UiEvent, State : UiState, Effect : UiEffect> : ViewModel() {
 
     // Create Initial State of View
     private val initialState: State by lazy { createInitialState() }
@@ -38,7 +38,7 @@ abstract class BaseScreenModel<Event : UiEvent, State : UiState, Effect : UiEffe
      * Start listening to Event
      */
     private fun subscribeEvents() {
-        screenModelScope.launch {
+        viewModelScope.launch {
             event.collect {
                 handleEvent(it)
             }
@@ -55,7 +55,7 @@ abstract class BaseScreenModel<Event : UiEvent, State : UiState, Effect : UiEffe
      */
     fun setEvent(event: Event) {
         val newEvent = event
-        screenModelScope.launch { _event.emit(newEvent) }
+        viewModelScope.launch { _event.emit(newEvent) }
     }
 
 
@@ -72,6 +72,6 @@ abstract class BaseScreenModel<Event : UiEvent, State : UiState, Effect : UiEffe
      */
     protected fun setEffect(builder: () -> Effect) {
         val effectValue = builder()
-        screenModelScope.launch { _effect.emit(effectValue) }
+        viewModelScope.launch { _effect.emit(effectValue) }
     }
 }

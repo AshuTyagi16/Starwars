@@ -48,9 +48,6 @@ kotlin {
             // Koin DI
             implementation(libs.bundles.koin.common)
 
-            // Voyager ScreenModel
-            implementation(libs.voyager.screenmodel)
-
             // SqlDelight DB
             implementation(libs.bundles.sqldelight.common)
 

@@ -58,7 +58,9 @@ dependencies {
 
     // Compose
     implementation(platform(libs.compose.bom))
-    implementation(libs.activity.compose)
+    implementation(libs.activity.compose) {
+        exclude(group = "androidx.lifecycle", module = "lifecycle-viewmodel-ktx")
+    }
     implementation(libs.bundles.compose.android)
 
     // Voyager Navigation

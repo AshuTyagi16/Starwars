@@ -7,4 +7,6 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.ktorfit) apply false
     alias(libs.plugins.sqldelight) apply false
+    alias(libs.plugins.kmm.bridge) apply false
+    alias(libs.plugins.kotlinCocoapods) apply false
 }

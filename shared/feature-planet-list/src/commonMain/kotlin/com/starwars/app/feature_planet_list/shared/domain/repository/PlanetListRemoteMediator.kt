@@ -33,7 +33,7 @@ internal class PlanetListRemoteMediator(
             }
 
             LoadType.PREPEND -> {
-                return MediatorResult.Success(endOfPaginationReached = true)
+                return MediatorResult.Success(endOfPaginationReached = false)
             }
 
             LoadType.APPEND -> {

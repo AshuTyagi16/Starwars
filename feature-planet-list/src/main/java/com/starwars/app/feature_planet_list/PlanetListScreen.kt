@@ -35,13 +35,12 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import cafe.adriel.voyager.core.registry.ScreenRegistry
-import cafe.adriel.voyager.core.registry.rememberScreen
 import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.koin.koinScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.starwars.app.core_navigation.SharedScreen
 import com.starwars.app.feature_planet_list.shared.ui.PlanetListScreenModel
+import org.koin.androidx.compose.koinViewModel
 
 data object PlanetListScreen : Screen {
 
@@ -50,7 +49,7 @@ data object PlanetListScreen : Screen {
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
-        val viewModel: PlanetListScreenModel = koinScreenModel()
+        val viewModel: PlanetListScreenModel = koinViewModel()
         val snackbarHostState = remember { SnackbarHostState() }
         val pagingResult = viewModel.pager.collectAsLazyPagingItems()
 

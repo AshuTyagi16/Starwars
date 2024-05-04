@@ -1,7 +1,6 @@
 package com.starwars.app.feature_planet_detail
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,21 +12,17 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import cafe.adriel.voyager.core.registry.ScreenRegistry
 import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.koin.koinScreenModel
-import com.starwars.app.core_navigation.SharedScreen
 import com.starwars.app.feature_planet_detail.shared.ui.PlanetDetailScreenModel
+import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 import org.mobilenativefoundation.store.store5.StoreReadResponse
 
@@ -36,7 +31,7 @@ data class PlanetDetailScreen(
 ) : Screen {
     @Composable
     override fun Content() {
-        val viewModel: PlanetDetailScreenModel = koinScreenModel(parameters = { parametersOf(uid) })
+        val viewModel: PlanetDetailScreenModel = koinViewModel(parameters = { parametersOf(uid) })
 
         val state = viewModel.planetDetailResponse.collectAsState()
 

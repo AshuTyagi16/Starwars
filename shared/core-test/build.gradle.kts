@@ -39,7 +39,7 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
-        androidNativeTest.dependencies {
+        androidMain.dependencies {
             implementation(libs.bundles.shared.androidTest)
         }
     }

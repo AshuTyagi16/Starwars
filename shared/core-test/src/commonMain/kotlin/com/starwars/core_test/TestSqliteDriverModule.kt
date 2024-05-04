@@ -6,7 +6,7 @@ import org.koin.dsl.module
 
 val testSqliteDriverModule = module {
     single<SqlDriver> {
-        getSqliteTestDriver2()
+        getSqliteTestDriver()
     }
     single {
         PlanetDatabase(driver = get())

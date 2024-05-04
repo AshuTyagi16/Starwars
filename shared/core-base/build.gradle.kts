@@ -30,14 +30,10 @@ kotlin {
 
             implementation(libs.coroutines.core)
 
-            implementation(libs.voyager.screenmodel)
+            api(libs.androidx.lifecycle.viewmodel)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-        }
-        androidMain.dependencies {
-            // ViewModel
-            api(libs.androidx.lifecycle.viewmodel)
         }
     }
 }

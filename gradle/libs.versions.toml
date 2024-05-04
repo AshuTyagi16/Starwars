@@ -3,19 +3,19 @@ kotlinCompilerExtensionVersion = "1.5.12"
 jvmTarget = "1.8"
 agp = "8.4.0"
 kotlin = "1.9.23"
-coreKtx = "1.13.0"
+coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.7.0"
+lifecycleRuntimeKtx = "2.8.0-rc01"
 activityCompose = "1.9.0"
-composeBom = "2024.04.01"
+composeBom = "2024.05.00"
 ksp = "1.9.23-1.0.20"
 ktorfit = "1.13.0"
 kermit = "2.0.3"
 ktor = "2.3.10"
 store5 = "5.0.0"
-kotlin-atomicfu = "0.23.1"
+kotlin-atomicfu = "0.23.2"
 sqldelight = "2.0.2"
 kotlin-datetime = "0.5.0"
 kotlin-serialization = "1.6.3"
@@ -23,12 +23,13 @@ coroutines = "1.8.0"
 koin = "3.5.6"
 coil = "2.6.0"
 appcompat = "1.6.1"
-material = "1.11.0"
-paging = "3.3.0-beta01"
+material = "1.12.0"
+paging = "3.3.0-rc01"
 compose-shimmer = "1.2.0"
 voyager = "1.1.0-alpha04"
 app-startup = "1.1.1"
 turbine = "1.1.0"
+kmm-bridge = "0.5.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -36,7 +37,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
-androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycleRuntimeKtx" }
 
 ## App Startup
 app-startup = { module = "androidx.startup:startup-runtime", version.ref = "app-startup" }
@@ -68,7 +69,6 @@ kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 voyager-core = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
 voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyager" }
-voyager-screenmodel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyager" }
 
 ## Ktor + Ktorfit
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
@@ -125,10 +125,12 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+kmm-bridge = { id = "co.touchlab.kmmbridge", version.ref = "kmm-bridge" }
 
 [bundles]
 ktor-android = [
@@ -152,8 +154,7 @@ store = [
 sqldelight-common = [
     "sqldelight-runtime",
     "sqldelight-coroutines-extension",
-    "sqldelight-paging",
-    "sqldelight-jvm"
+    "sqldelight-paging"
 ]
 sqldelight-android = [
     "sqldelight-android-driver"
@@ -178,13 +179,11 @@ compose-android = [
 voyager-android = [
     "voyager-core",
     "voyager-transitions",
-    "voyager-koin",
-    "voyager-screenmodel"
+    "voyager-koin"
 ]
 shared-commonTest = [
     "kotlin-test",
     "koin-test",
-    "koin-junit",
     "turbine",
     "coroutines-test",
     "ktor-client-mock",
@@ -192,5 +191,6 @@ shared-commonTest = [
 ]
 shared-androidTest = [
     "coroutines-test",
-    "sqldelight-jvm"
+    "sqldelight-jvm",
+    "koin-junit"
 ]
