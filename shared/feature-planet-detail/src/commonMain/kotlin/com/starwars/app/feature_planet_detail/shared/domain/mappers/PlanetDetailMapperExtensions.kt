@@ -6,14 +6,14 @@ import com.starwars.app.feature_planet_detail.shared.domain.model.PlanetDetail
 import com.starwars.app.feature_planet_detail.shared.domain.model.PlanetProperties
 import com.starwars.app.coredatabase.shared.PlanetDetailEntity
 
-fun PlanetDetailDTO.toPlanetDetail(): PlanetDetail {
+internal fun PlanetDetailDTO.toPlanetDetail(): PlanetDetail {
     return PlanetDetail(
         properties = properties.toPlanetProperties(),
         uid = uid
     )
 }
 
-fun PlanetDetailEntity.toPlanetDetail(): PlanetDetail {
+internal fun PlanetDetailEntity.toPlanetDetail(): PlanetDetail {
     return PlanetDetail(
         uid = uid,
         properties = PlanetProperties(
@@ -30,7 +30,7 @@ fun PlanetDetailEntity.toPlanetDetail(): PlanetDetail {
     )
 }
 
-fun PlanetDetail.toPlanetDetailEntity(): PlanetDetailEntity {
+internal fun PlanetDetail.toPlanetDetailEntity(): PlanetDetailEntity {
     return PlanetDetailEntity(
         uid = uid,
         climate = properties.climate,
@@ -45,7 +45,7 @@ fun PlanetDetail.toPlanetDetailEntity(): PlanetDetailEntity {
     )
 }
 
-fun PlanetPropertiesDTO.toPlanetProperties(): PlanetProperties {
+internal fun PlanetPropertiesDTO.toPlanetProperties(): PlanetProperties {
     return PlanetProperties(
         climate = climate,
         diameter = diameter,

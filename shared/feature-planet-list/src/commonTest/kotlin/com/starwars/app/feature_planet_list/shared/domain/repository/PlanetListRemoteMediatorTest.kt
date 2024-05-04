@@ -66,7 +66,7 @@ class PlanetListRemoteMediatorTest : KoinTest {
         val module = testHttpEngineModule(
             isSuccess = true,
             getSuccessResponse = {
-                DummyPlanetListResponse.getResponseForEndpoint(it)
+                DummyPlanetListResponse.planetListResponse
             }
         )
         loadKoinModules(module)

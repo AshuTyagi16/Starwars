@@ -55,13 +55,14 @@ kotlin {
             implementation(libs.bundles.sqldelight.common)
 
             api(libs.store)
+
+            implementation(projects.shared.coreTest)
         }
         commonTest.dependencies {
-            implementation(libs.kotlin.test)
+            implementation(libs.bundles.shared.commonTest)
         }
         androidMain.dependencies {
             implementation(libs.bundles.sqldelight.android)
-
             implementation(libs.app.startup)
         }
         iosMain.dependencies {

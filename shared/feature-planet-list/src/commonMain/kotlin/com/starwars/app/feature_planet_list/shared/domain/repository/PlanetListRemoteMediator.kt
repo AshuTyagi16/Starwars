@@ -11,7 +11,7 @@ import com.starwars.app.feature_planet_list.shared.domain.mapper.toPlanetEntityL
 import com.starwars.app.coredatabase.shared.PlanetEntity
 
 @OptIn(ExperimentalPagingApi::class)
-class PlanetListRemoteMediator(
+internal class PlanetListRemoteMediator(
     private val planetListLocalDataSource: PlanetListLocalDataSource,
     private val planetListRemoteDataSource: PlanetListRemoteDataSource
 ) : RemoteMediator<Int, PlanetEntity>() {

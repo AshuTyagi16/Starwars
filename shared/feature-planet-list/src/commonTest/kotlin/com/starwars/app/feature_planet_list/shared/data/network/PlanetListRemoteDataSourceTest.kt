@@ -37,11 +37,11 @@ class PlanetListRemoteDataSourceTest : KoinTest {
     }
 
     @Test
-    fun fetchCurrenciesSuccess() = runTest {
+    fun `fetch planet list success`() = runTest {
         val module = testHttpEngineModule(
             isSuccess = true,
             getSuccessResponse = {
-                DummyPlanetListResponse.getResponseForEndpoint(it)
+                DummyPlanetListResponse.planetListResponse
             }
         )
 
@@ -56,7 +56,7 @@ class PlanetListRemoteDataSourceTest : KoinTest {
     }
 
     @Test
-    fun fetchCurrenciesFailure() = runTest {
+    fun `fetch planet list failure`() = runTest {
         val module = testHttpEngineModule(isSuccess = false)
         loadKoinModules(module)
         val result = planetListRemoteDataSource.fetchPlanets(0, 10)

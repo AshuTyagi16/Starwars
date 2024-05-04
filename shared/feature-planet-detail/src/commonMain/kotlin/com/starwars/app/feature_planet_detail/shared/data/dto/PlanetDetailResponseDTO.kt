@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PlanetDetailResponseDTO(
+internal data class PlanetDetailResponseDTO(
     @SerialName("result")
     val result: PlanetDetailDTO
 )
