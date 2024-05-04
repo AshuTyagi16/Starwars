@@ -32,7 +32,7 @@ kotlin {
 
             implementation(libs.kotlin.serialization)
 
-            implementation(libs.bundles.ktor.common)
+            api(libs.bundles.ktor.common)
 
             implementation(libs.bundles.koin.common)
         }

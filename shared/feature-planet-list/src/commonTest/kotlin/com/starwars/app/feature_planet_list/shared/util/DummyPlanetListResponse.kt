@@ -1,6 +1,6 @@
 package com.starwars.app.feature_planet_list.shared.util
 
-object DummyResponse {
+internal object DummyPlanetListResponse {
 
     val planetListResponse = """
         {

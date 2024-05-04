@@ -3,7 +3,8 @@ package com.starwars.app.feature_planet_list.shared.data.network
 import com.starwars.app.core_network.shared.data.model.ApiResponse
 import com.starwars.app.core_network.shared.di.networkModule
 import com.starwars.app.feature_planet_list.shared.di.featurePlanetListModule
-import com.starwars.app.feature_planet_list.shared.di.testHttpEngineModule
+import com.starwars.core_test.testHttpEngineModule
+import com.starwars.app.feature_planet_list.shared.util.DummyPlanetListResponse
 import kotlinx.coroutines.test.runTest
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
@@ -37,7 +38,12 @@ class PlanetListRemoteDataSourceTest : KoinTest {
 
     @Test
     fun fetchCurrenciesSuccess() = runTest {
-        val module = testHttpEngineModule(isSuccess = true)
+        val module = testHttpEngineModule(
+            isSuccess = true,
+            getSuccessResponse = {
+                DummyPlanetListResponse.getResponseForEndpoint(it)
+            }
+        )
 
         loadKoinModules(module)
         val result = planetListRemoteDataSource.fetchPlanets(0, 10)

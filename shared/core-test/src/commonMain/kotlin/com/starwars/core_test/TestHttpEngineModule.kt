@@ -1,9 +1,7 @@
-package com.starwars.app.feature_planet_list.shared.di
+package com.starwars.core_test
 
 import com.starwars.app.core_network.shared.data.network.HttpClientApi
-import com.starwars.app.core_network.shared.di.getHttpClientEngine
 import com.starwars.app.core_network.shared.util.NetworkConstants
-import com.starwars.app.feature_planet_list.shared.util.DummyResponse
 import de.jensklingenberg.ktorfit.Ktorfit
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
@@ -15,13 +13,16 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import org.koin.dsl.module
 
-fun testHttpEngineModule(isSuccess: Boolean) = module {
+fun testHttpEngineModule(
+    isSuccess: Boolean,
+    getSuccessResponse: (path: String) -> String = { "" }
+) = module {
     single<HttpClientEngine> {
         MockEngine(
             MockEngineConfig().also {
                 it.addHandler { request ->
                     respond(
-                        content = if (isSuccess) DummyResponse.getResponseForEndpoint(request.url.encodedPath) else "",
+                        content = if (isSuccess) getSuccessResponse(request.url.encodedPath) else "",
                         status = if (isSuccess) HttpStatusCode.OK else HttpStatusCode.NotFound,
                         headers = headersOf(
                             HttpHeaders.ContentType,
@@ -33,13 +34,15 @@ fun testHttpEngineModule(isSuccess: Boolean) = module {
         )
     }
     single<Ktorfit> {
-        val httpClientApi : HttpClientApi = get()
+        val httpClientApi: HttpClientApi = get()
         Ktorfit.Builder()
-            .httpClient(httpClientApi.getHttpClient(
-                baseUrl = NetworkConstants.BASE_URL,
-                shouldEnableLogging = true,
-                engine = get()
-            ))
+            .httpClient(
+                httpClientApi.getHttpClient(
+                    baseUrl = NetworkConstants.BASE_URL,
+                    shouldEnableLogging = true,
+                    engine = get()
+                )
+            )
             .build()
     }
 }

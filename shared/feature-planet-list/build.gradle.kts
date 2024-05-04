@@ -66,14 +66,7 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.bundles.sqldelight.android)
-
             implementation(libs.app.startup)
-        }
-        androidNativeTest.dependencies {
-            implementation(libs.bundles.shared.androidTest)
-        }
-        iosMain.dependencies {
-            implementation(libs.bundles.sqldelight.native)
         }
     }
 }

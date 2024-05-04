@@ -9,8 +9,9 @@ import com.starwars.app.core_database.shared.di.coreDatabaseModule
 import com.starwars.app.core_network.shared.di.networkModule
 import com.starwars.app.coredatabase.shared.PlanetEntity
 import com.starwars.app.feature_planet_list.shared.di.featurePlanetListModule
-import com.starwars.app.feature_planet_list.shared.di.testHttpEngineModule
-import com.starwars.app.feature_planet_list.shared.di.testSqliteDriverModule
+import com.starwars.core_test.testHttpEngineModule
+import com.starwars.app.feature_planet_list.shared.util.DummyPlanetListResponse
+import com.starwars.core_test.testSqliteDriverModule
 import kotlinx.coroutines.test.runTest
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
@@ -62,7 +63,12 @@ class PlanetListRemoteMediatorTest : KoinTest {
 
     @Test
     fun appendLoadSuccessAndEndOfPaginationWhenNoMoreData() = runTest {
-        val module = testHttpEngineModule(isSuccess = true)
+        val module = testHttpEngineModule(
+            isSuccess = true,
+            getSuccessResponse = {
+                DummyPlanetListResponse.getResponseForEndpoint(it)
+            }
+        )
         loadKoinModules(module)
         val pagingState = PagingState<Int, PlanetEntity>(
             listOf(),

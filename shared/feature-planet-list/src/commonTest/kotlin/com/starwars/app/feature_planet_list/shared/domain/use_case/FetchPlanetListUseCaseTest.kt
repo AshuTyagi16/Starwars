@@ -1,13 +1,12 @@
 package com.starwars.app.feature_planet_list.shared.domain.use_case
 
 import androidx.paging.testing.asSnapshot
-import app.cash.turbine.test
 import com.starwars.app.core_database.shared.di.coreDatabaseModule
 import com.starwars.app.core_network.shared.di.networkModule
 import com.starwars.app.feature_planet_list.shared.di.featurePlanetListModule
-import com.starwars.app.feature_planet_list.shared.di.testHttpEngineModule
-import com.starwars.app.feature_planet_list.shared.di.testSqliteDriverModule
-import io.ktor.client.plugins.ClientRequestException
+import com.starwars.core_test.testHttpEngineModule
+import com.starwars.app.feature_planet_list.shared.util.DummyPlanetListResponse
+import com.starwars.core_test.testSqliteDriverModule
 import kotlinx.coroutines.test.runTest
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
@@ -20,7 +19,6 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
-import kotlin.test.assertNotNull
 
 class FetchPlanetListUseCaseTest : KoinTest {
 
@@ -45,7 +43,12 @@ class FetchPlanetListUseCaseTest : KoinTest {
 
     @Test
     fun `fetchPlanets success return paging data with items`() = runTest {
-        val module = testHttpEngineModule(isSuccess = true)
+        val module = testHttpEngineModule(
+            isSuccess = true,
+            getSuccessResponse = {
+                DummyPlanetListResponse.getResponseForEndpoint(it)
+            }
+        )
         loadKoinModules(module)
         val itemSnapshot = fetchPlanetListUseCase.fetchPlanets().asSnapshot {
             scrollTo(index = 10)

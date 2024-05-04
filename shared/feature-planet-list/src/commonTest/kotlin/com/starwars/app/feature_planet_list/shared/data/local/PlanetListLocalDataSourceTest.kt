@@ -4,8 +4,8 @@ import app.cash.sqldelight.db.SqlDriver
 import com.starwars.app.core_network.shared.di.networkModule
 import com.starwars.app.coredatabase.shared.PlanetEntity
 import com.starwars.app.feature_planet_list.shared.di.featurePlanetListModule
-import com.starwars.app.feature_planet_list.shared.di.testSqliteDriverModule
-import com.starwars.app.feature_planet_list.shared.util.DummyResponse
+import com.starwars.app.feature_planet_list.shared.util.DummyPlanetListResponse
+import com.starwars.core_test.testSqliteDriverModule
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonArray
@@ -29,7 +29,7 @@ class PlanetListLocalDataSourceTest : KoinTest {
     private val json: Json by inject()
 
     private val planetList by lazy {
-        json.parseToJsonElement(DummyResponse.planetListResponse)
+        json.parseToJsonElement(DummyPlanetListResponse.planetListResponse)
             .jsonObject["results"]?.jsonArray
             ?.map {
                 PlanetEntity(

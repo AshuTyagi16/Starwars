@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/shared/core-base" />
             <option value="$PROJECT_DIR$/shared/core-database" />
             <option value="$PROJECT_DIR$/shared/core-network" />
+            <option value="$PROJECT_DIR$/shared/core-test" />
             <option value="$PROJECT_DIR$/shared/feature-planet-detail" />
             <option value="$PROJECT_DIR$/shared/feature-planet-list" />
           </set>

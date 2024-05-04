@@ -25,12 +25,18 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+
+            implementation(projects.shared.coreNetwork)
+
             implementation(projects.shared.coreDatabase)
 
             implementation(libs.bundles.sqldelight.common)
+
+            implementation(libs.bundles.koin.common)
+
+            implementation(libs.bundles.shared.commonTest)
         }
         commonTest.dependencies {
-            implementation(libs.bundles.shared.commonTest)
             implementation(libs.kotlin.test)
         }
         androidNativeTest.dependencies {
