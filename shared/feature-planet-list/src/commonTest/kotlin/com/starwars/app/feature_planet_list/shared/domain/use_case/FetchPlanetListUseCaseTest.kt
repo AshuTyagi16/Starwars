@@ -2,7 +2,7 @@ package com.starwars.app.feature_planet_list.shared.domain.use_case
 
 import androidx.paging.testing.asSnapshot
 import com.starwars.app.core_database.shared.di.coreDatabaseModule
-import com.starwars.app.core_network.shared.di.networkModule
+import com.starwars.app.core_network.shared.di.coreNetworkModule
 import com.starwars.app.feature_planet_list.shared.di.featurePlanetListModule
 import com.starwars.core_test.testHttpEngineModule
 import com.starwars.app.feature_planet_list.shared.util.DummyPlanetListResponse
@@ -29,7 +29,7 @@ class FetchPlanetListUseCaseTest : KoinTest {
         startKoin {
             modules(
                 coreDatabaseModule,
-                networkModule,
+                coreNetworkModule,
                 featurePlanetListModule,
                 testSqliteDriverModule
             )

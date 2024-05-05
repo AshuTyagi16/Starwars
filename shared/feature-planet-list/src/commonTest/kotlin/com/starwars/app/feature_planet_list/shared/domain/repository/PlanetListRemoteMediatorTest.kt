@@ -6,7 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import com.starwars.app.core_database.shared.di.coreDatabaseModule
-import com.starwars.app.core_network.shared.di.networkModule
+import com.starwars.app.core_network.shared.di.coreNetworkModule
 import com.starwars.app.coredatabase.shared.PlanetEntity
 import com.starwars.app.feature_planet_list.shared.di.featurePlanetListModule
 import com.starwars.core_test.testHttpEngineModule
@@ -37,7 +37,7 @@ class PlanetListRemoteMediatorTest : KoinTest {
             modules(
                 coreDatabaseModule,
                 testSqliteDriverModule,
-                networkModule,
+                coreNetworkModule,
                 featurePlanetListModule
             )
         }

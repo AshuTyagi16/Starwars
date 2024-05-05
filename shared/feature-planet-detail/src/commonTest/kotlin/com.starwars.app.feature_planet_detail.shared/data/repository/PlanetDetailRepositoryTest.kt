@@ -1,7 +1,7 @@
 package com.starwars.app.feature_planet_detail.shared.data.repository
 
 import app.cash.turbine.test
-import com.starwars.app.core_network.shared.di.networkModule
+import com.starwars.app.core_network.shared.di.coreNetworkModule
 import com.starwars.app.feature_planet_detail.shared.di.featurePlanetDetailModule
 import com.starwars.app.feature_planet_detail.shared.util.DummyPlanetDetailResponse
 import com.starwars.core_test.testHttpEngineModule
@@ -28,7 +28,7 @@ class PlanetDetailRepositoryTest : KoinTest {
     fun setup() {
         startKoin {
             modules(
-                networkModule,
+                coreNetworkModule,
                 testSqliteDriverModule,
                 featurePlanetDetailModule,
             )

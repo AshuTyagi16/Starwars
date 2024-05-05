@@ -9,4 +9,5 @@ plugins {
     alias(libs.plugins.sqldelight) apply false
     alias(libs.plugins.kmm.bridge) apply false
     alias(libs.plugins.kotlinCocoapods) apply false
+    alias(libs.plugins.skie) apply false
 }

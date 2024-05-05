@@ -1,3 +1,7 @@
+import co.touchlab.skie.configuration.FlowInterop
+import co.touchlab.skie.configuration.EnumInterop
+import co.touchlab.skie.configuration.SealedInterop
+import co.touchlab.skie.configuration.SuspendInterop
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 
 plugins {
@@ -5,6 +9,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kmm.bridge)
     alias(libs.plugins.kotlinCocoapods)
+    alias(libs.plugins.skie)
 }
 
 version = "0.1"
@@ -38,6 +43,8 @@ kotlin {
 
             // Shared Feature Planet Detail Module
             api(projects.shared.featurePlanetDetail)
+
+            api(libs.bundles.koin.common)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -56,7 +63,7 @@ kotlin {
             baseName = "shared"
 
             // Shared Core Base Module
-            export(projects.shared.coreBase)
+            export(project(":shared:core-base"))
 
             // Shared Core Database Module
             export(projects.shared.coreDatabase)
@@ -94,4 +101,16 @@ kmmbridge {
     spm()
     cocoapods("git@github.com:AshuTyagi16/StarwarsKmpPodspec.git")
     buildType.set(NativeBuildType.DEBUG)
+}
+
+skie {
+    features {
+        group {
+            FlowInterop.Enabled(true)
+            coroutinesInterop.set(true)
+            SuspendInterop.Enabled(true)
+            EnumInterop.Enabled(true)
+            SealedInterop.Enabled(true)
+        }
+    }
 }

@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 
 @OptIn(ExperimentalSerializationApi::class)
-val networkModule = module {
+val coreNetworkModule = module {
 
     single<Json> {
         Json {

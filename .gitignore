@@ -20,3 +20,4 @@ local.properties
 /shared/core-test/build
 /shared/feature-planet-list/build
 /shared/feature-planet-detail/build
+iosApp/Pods

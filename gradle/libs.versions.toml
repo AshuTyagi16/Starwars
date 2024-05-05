@@ -25,11 +25,13 @@ coil = "2.6.0"
 appcompat = "1.6.1"
 material = "1.12.0"
 paging = "3.3.0-rc01"
+paging-ios = "3.3.0-alpha02-0.5.1"
 compose-shimmer = "1.2.0"
 voyager = "1.1.0-alpha04"
 app-startup = "1.1.1"
 turbine = "1.1.0"
 kmm-bridge = "0.5.1"
+skie = "0.6.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,7 +47,7 @@ app-startup = { module = "androidx.startup:startup-runtime", version.ref = "app-
 ## Paging
 paging = { module = "androidx.paging:paging-common", version.ref = "paging" }
 paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
-paging-ios = { module = "app.cash.paging:paging-runtime-uikit", version.ref = "paging" }
+paging-ios = { module = "app.cash.paging:paging-runtime-uikit", version.ref = "paging-ios" }
 paging-testing = { module = "androidx.paging:paging-testing", version.ref = "paging" }
 
 ## Compose Shimmer
@@ -131,6 +133,7 @@ ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 kmm-bridge = { id = "co.touchlab.kmmbridge", version.ref = "kmm-bridge" }
+skie = { id = "co.touchlab.skie", version.ref = "skie"}
 
 [bundles]
 ktor-android = [

@@ -2,7 +2,7 @@ package com.starwars.app.feature_planet_detail.shared.data.local
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.turbine.test
-import com.starwars.app.core_network.shared.di.networkModule
+import com.starwars.app.core_network.shared.di.coreNetworkModule
 import com.starwars.app.feature_planet_detail.shared.data.dto.PlanetDetailResponseDTO
 import com.starwars.app.feature_planet_detail.shared.di.featurePlanetDetailModule
 import com.starwars.app.feature_planet_detail.shared.domain.mappers.toPlanetDetail
@@ -36,7 +36,7 @@ class PlanetDetailLocalDataSourceTest : KoinTest {
     fun before() = runTest {
         startKoin {
             modules(
-                networkModule,
+                coreNetworkModule,
                 featurePlanetDetailModule,
                 testSqliteDriverModule
             )

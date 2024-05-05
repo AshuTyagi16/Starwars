@@ -1,6 +1,6 @@
 package com.starwars.app.feature_planet_detail.shared.data.network
 
-import com.starwars.app.core_network.shared.di.networkModule
+import com.starwars.app.core_network.shared.di.coreNetworkModule
 import com.starwars.app.feature_planet_detail.shared.data.dto.PlanetDetailResponseDTO
 import com.starwars.app.feature_planet_detail.shared.di.featurePlanetDetailModule
 import com.starwars.app.feature_planet_detail.shared.util.DummyPlanetDetailResponse
@@ -33,7 +33,7 @@ class PlanetDetailRemoteDataSourceTest : KoinTest {
     fun before() {
         startKoin {
             modules(
-                networkModule,
+                coreNetworkModule,
                 featurePlanetDetailModule,
                 testSqliteDriverModule
             )
