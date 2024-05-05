@@ -1,7 +1,7 @@
 [versions]
 kotlinCompilerExtensionVersion = "1.5.12"
 jvmTarget = "1.8"
-agp = "8.4.0"
+agp = "8.2.1"
 kotlin = "1.9.23"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -21,10 +21,10 @@ kotlin-datetime = "0.5.0"
 kotlin-serialization = "1.6.3"
 coroutines = "1.8.0"
 koin = "3.5.6"
-coil = "2.6.0"
+stately = "2.0.7"
 appcompat = "1.6.1"
 material = "1.12.0"
-paging = "3.3.0-rc01"
+paging = "3.3.0-alpha02"
 paging-ios = "3.3.0-alpha02-0.5.1"
 compose-shimmer = "1.2.0"
 voyager = "1.1.0-alpha04"
@@ -106,8 +106,10 @@ koin-junit = { module = "io.insert-koin:koin-test-junit4", version.ref = "koin" 
 ## Store5
 store = { module = "org.mobilenativefoundation.store:store5", version.ref = "store5" }
 
-## Coil (Image Loading)
-coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+## Stately
+stately = { module = "co.touchlab:stately-concurrency", version.ref = "stately" }
+
+
 
 ## SqlDelight
 sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqldelight" }
@@ -133,7 +135,7 @@ ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 kmm-bridge = { id = "co.touchlab.kmmbridge", version.ref = "kmm-bridge" }
-skie = { id = "co.touchlab.skie", version.ref = "skie"}
+skie = { id = "co.touchlab.skie", version.ref = "skie" }
 
 [bundles]
 ktor-android = [

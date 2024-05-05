@@ -28,11 +28,10 @@ struct PlanetListScreen: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            
             List {
-                
                 ForEach(items, id: \.uid) { item in
                     Text(item.name)
+                        .foregroundColor(.white)
                         .padding(.vertical, 12)
                         .listRowInsets(EdgeInsets())
                         .listRowBackground(Color.clear)
@@ -47,14 +46,14 @@ struct PlanetListScreen: View {
                 if(hasNextPage && errorMessage == nil && !items.isEmpty) {
                     getLoadindView()
                         .onAppear{
-//                            pagingHelper.loadNextPage()
+                            pagingHelper.loadNextPage()
                         }
                 }
                 if(errorMessage != nil) {
                     getErrorView(
                         errorMessage: errorMessage!,
                         onRetryClicked: {
-//                            pagingHelper.retry()
+                            pagingHelper.retry()
                             self.errorMessage = nil
                         }
                     )
@@ -74,49 +73,53 @@ struct PlanetListScreen: View {
                 operation: {
                     self.viewModel = viewModel
                     for await pagingData in viewModel.pager {
-//                        try? await skie(pagingHelper).submitData(pagingData: pagingData)
+                        try? await skie(pagingHelper).submitData(pagingData: pagingData)
                     }
                 },
                 onCancel: {
-//                    viewModel.onCleared()
-//                    DispatchQueue.main.async {
-//                        self.viewModel = nil
-//                    }
+                    viewModel.onCleared()
+                    DispatchQueue.main.async {
+                        self.viewModel = nil
+                    }
                 }
             )
         }
         .task {
-//            for await _ in pagingHelper.onPagesUpdatedFlow {
-//                self.items = pagingHelper.getItems()
-//            }
+            for await _ in pagingHelper.onPagesUpdatedFlow {
+                pagingHelper.getItems().forEach { item in
+                    if(self.items.contains(item) == false){
+                        self.items.append(item)
+                    }
+                }
+            }
         }
-//        .task {
-//            for await loadState in pagingHelper.loadStateFlow {
-//                switch onEnum(of: loadState.append) {
-//                case .error(let errorState):
-//                    self.errorMessage = errorState.error.message
-//                    break
-//                case .loading(_):
-//                    break
-//                case .notLoading(let notLoadingState):
-//                    self.hasNextPage = !notLoadingState.endOfPaginationReached
-//                    break
-//                }
-//                
-//                switch onEnum(of: loadState.refresh) {
-//                case .error(let errorState):
-//                    self.errorMessage = errorState.error.message
-//                    self.showLoadingPlaceholder = false
-//                    break
-//                case .loading(_):
-//                    self.showLoadingPlaceholder = true
-//                    break
-//                case .notLoading(_):
-//                    self.showLoadingPlaceholder = false
-//                    break
-//                }
-//            }
-//        }
+        .task {
+            for await loadState in pagingHelper.loadStateFlow {
+                switch onEnum(of: loadState.append) {
+                case .error(let errorState):
+                    self.errorMessage = errorState.error.message
+                    break
+                case .loading(_):
+                    break
+                case .notLoading(let notLoadingState):
+                    self.hasNextPage = !notLoadingState.endOfPaginationReached
+                    break
+                }
+                
+                switch onEnum(of: loadState.refresh) {
+                case .error(let errorState):
+                    self.errorMessage = errorState.error.message
+                    self.showLoadingPlaceholder = false
+                    break
+                case .loading(_):
+                    self.showLoadingPlaceholder = true
+                    break
+                case .notLoading(_):
+                    self.showLoadingPlaceholder = false
+                    break
+                }
+            }
+        }
     }
     
     @ViewBuilder

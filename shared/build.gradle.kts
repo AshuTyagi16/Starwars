@@ -46,6 +46,8 @@ kotlin {
             api(projects.shared.featurePlanetDetail)
 
             api(libs.bundles.koin.common)
+
+            api(libs.stately)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
