@@ -14,7 +14,7 @@ struct PlanetListScreen: View {
     
     @EnvironmentObject private var navigator: FlowNavigator<AppRoute>
     
-    private let pagingHelper = SwiftUiPagingHelper<Planet>()
+    private var pagingHelper = SwiftUiPagingHelper<Planet>()
     
     @State private var viewModel : PlanetListScreenModel? = nil
     

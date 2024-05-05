@@ -6,10 +6,11 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kmm.bridge)
-    alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.skie)
+    `maven-publish`
 }
 
 version = "0.1"
@@ -97,7 +98,7 @@ android {
 }
 
 kmmbridge {
-//    mavenPublishArtifacts()
+    mavenPublishArtifacts()
     spm()
     cocoapods("git@github.com:AshuTyagi16/StarwarsKmpPodspec.git")
     buildType.set(NativeBuildType.DEBUG)

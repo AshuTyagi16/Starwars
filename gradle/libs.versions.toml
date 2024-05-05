@@ -30,7 +30,7 @@ compose-shimmer = "1.2.0"
 voyager = "1.1.0-alpha04"
 app-startup = "1.1.1"
 turbine = "1.1.0"
-kmm-bridge = "0.5.1"
+kmm-bridge = "0.5.5"
 skie = "0.6.4"
 
 [libraries]
