@@ -16,7 +16,7 @@ struct PlanetListScreen: View {
     
     private var pagingHelper = SwiftUiPagingHelper<Planet>()
     
-    @State private var viewModel : PlanetListScreenModel? = nil
+    @State private var viewModel : PlanetListViewModel? = nil
     
     @State private var hasNextPage: Bool = false
     
@@ -74,7 +74,7 @@ struct PlanetListScreen: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black.opacity(0.92)).edgesIgnoringSafeArea(.bottom)
         .task {
-            let viewModel = SharedModuleDependencies.shared.planetListScreenModel
+            let viewModel = SharedModuleDependencies.shared.planetListViewModel
             await withTaskCancellationHandler(
                 operation: {
                     self.viewModel = viewModel

@@ -19,7 +19,7 @@ struct PlanetDetailScreen: View {
     
     private let timer = Timer.publish(every: 1 / 15, on: .main, in: .common).autoconnect()
     
-    @State private var viewModel: PlanetDetailScreenModel?
+    @State private var viewModel: PlanetDetailViewModel?
     
     @State private var planetDetail: PlanetDetail?
     
@@ -171,11 +171,11 @@ struct PlanetDetailScreen: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .background(Color.black.opacity(0.92)).edgesIgnoringSafeArea(.bottom)
         .task {
-            let viewModel = SharedModuleDependencies.shared.planetDetailScreenModel
+            let viewModel = SharedModuleDependencies.shared.planetDetailViewModel
             await withTaskCancellationHandler(
                 operation: {
                     self.viewModel = viewModel
-                    self.viewModel?.fetchPlanetDetail(uid: self.uid)
+                    self.viewModel!.setEvent(event: PlanetDetailScreenContractEventFetchPlanetDetail(uid: self.uid))
                 },
                 onCancel: {
                     viewModel.onCleared()
@@ -187,15 +187,14 @@ struct PlanetDetailScreen: View {
         }
         .task {
             if(viewModel != nil){
-                for await planetDetailResponse in viewModel!.planetDetailResponse {
-                    switch onEnum(of: planetDetailResponse) {
-                    case .data:
-                        self.isLoading = false
-                        self.planetDetail = planetDetailResponse?.dataOrNull()
-                        break
-                    case .loading(let loading):
+                for await state in viewModel!.uiState {
+                    switch onEnum(of: state) {
+                    case .loading(let laoding):
                         self.isLoading = true
-                        break
+                    break
+                    case .success(let data):
+                        self.isLoading = false
+                        self.planetDetail = data.planetDetail
                     default:
                         break
                     }

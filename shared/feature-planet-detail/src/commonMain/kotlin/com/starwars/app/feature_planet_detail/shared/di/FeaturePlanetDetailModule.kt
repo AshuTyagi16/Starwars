@@ -10,7 +10,7 @@ import com.starwars.app.feature_planet_detail.shared.data.network.PlanetDetailSe
 import com.starwars.app.feature_planet_detail.shared.data.repository.PlanetDetailRepository
 import com.starwars.app.feature_planet_detail.shared.domain.repository.PlanetDetailRepositoryImpl
 import com.starwars.app.feature_planet_detail.shared.domain.use_case.FetchPlanetDetailUseCase
-import com.starwars.app.feature_planet_detail.shared.ui.PlanetDetailScreenModel
+import com.starwars.app.feature_planet_detail.shared.ui.PlanetDetailViewModel
 import de.jensklingenberg.ktorfit.Ktorfit
 import org.koin.dsl.module
 
@@ -45,7 +45,7 @@ val featurePlanetDetailModule = module {
     }
 
     factory {
-        PlanetDetailScreenModel(
+        PlanetDetailViewModel(
             fetchPlanetDetailUseCase = get()
         )
     }

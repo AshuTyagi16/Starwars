@@ -10,7 +10,7 @@ import com.starwars.app.feature_planet_list.shared.data.network.PlanetListServic
 import com.starwars.app.feature_planet_list.shared.domain.repository.PlanetListRemoteMediator
 import com.starwars.app.feature_planet_list.shared.domain.use_case.FetchPlanetListUseCase
 import com.starwars.app.feature_planet_list.shared.domain.use_case.FetchPlanetListUseCaseImpl
-import com.starwars.app.feature_planet_list.shared.ui.PlanetListScreenModel
+import com.starwars.app.feature_planet_list.shared.ui.PlanetListViewModel
 import de.jensklingenberg.ktorfit.Ktorfit
 import org.koin.dsl.module
 
@@ -49,7 +49,7 @@ val featurePlanetListModule = module {
     }
 
     factory {
-        PlanetListScreenModel(
+        PlanetListViewModel(
             fetchPlanetListUseCase = get()
         )
     }

@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,23 +23,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
-import com.starwars.app.feature_planet_detail.shared.ui.PlanetDetailScreenModel
+import com.starwars.app.feature_planet_detail.shared.ui.PlanetDetailScreenContract.State
+import com.starwars.app.feature_planet_detail.shared.ui.PlanetDetailScreenContract.Event
+import com.starwars.app.feature_planet_detail.shared.ui.PlanetDetailViewModel
 import org.koin.androidx.compose.koinViewModel
-import org.koin.core.parameter.parametersOf
-import org.mobilenativefoundation.store.store5.StoreReadResponse
 
 data class PlanetDetailScreen(
     private val uid: String
 ) : Screen {
     @Composable
     override fun Content() {
-        val viewModel: PlanetDetailScreenModel = koinViewModel()
+        val viewModel: PlanetDetailViewModel = koinViewModel()
 
         LaunchedEffect(Unit) {
-            viewModel.fetchPlanetDetail(uid)
+            viewModel.setEvent(Event.FetchPlanetDetail(uid))
         }
 
-        val state = viewModel.planetDetailResponse.collectAsState()
+        val state by viewModel.uiState.collectAsState()
 
         Box(
             modifier = Modifier
@@ -50,9 +51,13 @@ data class PlanetDetailScreen(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
             ) {
-                when (val data = state.value) {
-                    is StoreReadResponse.Data -> {
-                        val properties = data.dataOrNull()?.properties
+                when (val value = state) {
+                    State.Loading -> {
+                        CircularProgressIndicator()
+                    }
+
+                    is State.Success -> {
+                        val properties = value.planetDetail?.properties
 
                         Text(
                             text = stringResource(
@@ -206,26 +211,7 @@ data class PlanetDetailScreen(
                                     vertical = 16.dp
                                 )
                         )
-
                     }
-
-                    is StoreReadResponse.Error.Exception -> {
-
-                    }
-
-                    is StoreReadResponse.Error.Message -> {
-
-                    }
-
-                    is StoreReadResponse.Loading -> {
-                        CircularProgressIndicator()
-                    }
-
-                    is StoreReadResponse.NoNewData -> {
-
-                    }
-
-                    else -> {}
                 }
             }
         }

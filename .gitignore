@@ -21,3 +21,4 @@ local.properties
 /shared/feature-planet-list/build
 /shared/feature-planet-detail/build
 iosApp/Pods
+app/release

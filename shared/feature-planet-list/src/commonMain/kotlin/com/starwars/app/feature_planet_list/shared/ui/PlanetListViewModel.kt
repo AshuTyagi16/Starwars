@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.starwars.app.feature_planet_list.shared.domain.use_case.FetchPlanetListUseCase
 
-class PlanetListScreenModel(
+class PlanetListViewModel(
     fetchPlanetListUseCase: FetchPlanetListUseCase
 ) : ViewModel() {
 
