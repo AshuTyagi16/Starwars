@@ -1,14 +1,17 @@
 PODS:
   - FlowStacks (0.3.6)
+  - ProgressIndicatorView (1.0.0)
   - shared (0.1)
 
 DEPENDENCIES:
   - FlowStacks (~> 0.3.6)
+  - ProgressIndicatorView (~> 1.0)
   - shared (from `../shared`)
 
 SPEC REPOS:
   trunk:
     - FlowStacks
+    - ProgressIndicatorView
 
 EXTERNAL SOURCES:
   shared:
@@ -16,8 +19,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FlowStacks: ea499b20a2f3acb3ba010866c73e588bafa9b795
+  ProgressIndicatorView: f37b4bdc70132ab6398da55c674c72d86d757f0e
   shared: a236d07b996fb74f0ff8c957115aaff0c23c3606
 
-PODFILE CHECKSUM: f1bef819e1d3c27ec50431fa9a8f35557dd645e6
+PODFILE CHECKSUM: a225599c00ac068e6a32b884ec5f37d908f319f1
 
 COCOAPODS: 1.15.2

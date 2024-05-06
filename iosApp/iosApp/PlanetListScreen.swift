@@ -24,23 +24,29 @@ struct PlanetListScreen: View {
     
     @State private var showLoadingPlaceholder: Bool = false
     
-    @State private var items: [Planet] = []
+    @State private var items: Set<Planet> = []
     
     var body: some View {
-        VStack(alignment: .center, spacing: 0) {
+        VStack(alignment: .center, spacing: 50) {
             List {
-                ForEach(items, id: \.uid) { item in
-                    Text(item.name)
+                ForEach(items.sorted(by: { first, second in
+                    Int(first.uid) ?? 0 < Int(second.uid) ?? 0
+                }), id: \.uid) { item in
+                    let text = "\(item.uid) - \(item.name)"
+                    Text(text)
+                        .font(.system(size:30, weight: .semibold))
+                        .italic()
                         .foregroundColor(.white)
-                        .padding(.vertical, 12)
+                        .padding(.all, 16)
                         .listRowInsets(EdgeInsets())
                         .listRowBackground(Color.clear)
+                        .onTapGesture {
+                            navigator.push(.PlanetDetail(uid: item.uid))
+                        }
                 }
                 
                 if(showLoadingPlaceholder) {
-                    ProgressView()
-                        .listRowInsets(EdgeInsets())
-                        .listRowBackground(Color.clear)
+                    getLoadindView()
                 }
                 
                 if(hasNextPage && errorMessage == nil && !items.isEmpty) {
@@ -87,9 +93,7 @@ struct PlanetListScreen: View {
         .task {
             for await _ in pagingHelper.onPagesUpdatedFlow {
                 pagingHelper.getItems().forEach { item in
-                    if(self.items.contains(item) == false){
-                        self.items.append(item)
-                    }
+                    self.items.insert(item)
                 }
             }
         }
@@ -131,7 +135,7 @@ struct PlanetListScreen: View {
         .listRowSeparator(.hidden, edges: .all)
         .listRowBackground(Color.clear)
     }
-
+    
     @ViewBuilder
     private func getErrorView(
         errorMessage: String,

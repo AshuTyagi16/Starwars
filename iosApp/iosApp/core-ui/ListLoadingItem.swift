@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import ProgressIndicatorView
 
 struct ListLoadingItem: View {
     
@@ -19,13 +20,23 @@ struct ListLoadingItem: View {
             Text("Loading...")
                 .foregroundColor(.white)
             
-            ProgressView()
+            ProgressIndicatorView(
+                isVisible: .constant(true),
+                type: .default(progress: $progressForDefaultSector)
+            )
             .frame(width: 20.0, height: 20.0)
             .foregroundColor(.white)
             .padding(.top, 4)
             
         }
         .frame(maxWidth: .infinity, maxHeight: 80, alignment: .center)
+        .onReceive(timer) { _ in
+            if progressForDefaultSector >= 1.5 {
+                progressForDefaultSector = 0
+            } else {
+                progressForDefaultSector += 1 / 10
+            }
+        }
     }
 }
 

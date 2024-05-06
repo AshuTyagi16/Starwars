@@ -46,7 +46,6 @@ val featurePlanetDetailModule = module {
 
     factory {
         PlanetDetailScreenModel(
-            uid = it.get(),
             fetchPlanetDetailUseCase = get()
         )
     }

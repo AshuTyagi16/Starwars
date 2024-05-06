@@ -11,18 +11,13 @@ import kotlinx.coroutines.launch
 import org.mobilenativefoundation.store.store5.StoreReadResponse
 
 class PlanetDetailScreenModel(
-    private val uid: String,
     private val fetchPlanetDetailUseCase: FetchPlanetDetailUseCase
 ) : ViewModel() {
 
     private val _planetDetailResponse = MutableStateFlow<StoreReadResponse<PlanetDetail?>?>(null)
     val planetDetailResponse = _planetDetailResponse.asStateFlow()
 
-    init {
-        fetchPlanetDetail()
-    }
-
-    fun fetchPlanetDetail() {
+    fun fetchPlanetDetail(uid: String) {
         viewModelScope.launch {
             fetchPlanetDetailUseCase.invoke(uid)
                 .collectLatest {
