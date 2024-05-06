@@ -78,6 +78,8 @@
 - Publish IOS Binary as POD framework using [KMMBridge](https://kmmbridge.touchlab.co)
 - Dependency injection using [Koin](https://github.com/InsertKoinIO/koin)
 - Database caching using [SqlDelight](https://github.com/cashapp/sqldelight)
+- Unit tests for the shared code.
+
 
 ## Modularization
 
