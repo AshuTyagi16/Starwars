@@ -60,7 +60,7 @@ data object PlanetListScreen : Screen {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding)
-                    .background(Color.Black.copy(alpha = 0.82f))
+                    .background(Color.Black.copy(alpha = 0.92f))
             ) {
                 LazyColumn(
                     modifier = Modifier

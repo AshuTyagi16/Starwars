@@ -43,7 +43,7 @@ data class PlanetDetailScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.82f)),
+                .background(Color.Black.copy(alpha = 0.92f)),
             contentAlignment = Alignment.Center
         ) {
             Column(
