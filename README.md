@@ -92,6 +92,18 @@
 
 For more information, check out the [Guide to app modularization](https://developer.android.com/topic/modularization).
 
+## How to run IOS app?
+
+- Step 1: Open termianl inside the root folder of the project
+- Step 2: Run the following gradle task: ```./gradlew linkPodDebugFrameworkIosX64``` (It will create the pod framework for the shared code)
+- Step 3: Navigate to ```iosApp/``` folder & run the following command: ```export LOCAL_KOTLIN_PATH=../shared```
+- Step 4: Run ```pod install```
+- Step 5: Now open xcode & open ```ios.xcworkspace``` file inside ```iosApp/``` folder.
+- Step 6: Run the app in simulator
+
+NOTE: Please make sure you have [cocoapods](https://guides.cocoapods.org/using/getting-started.html) installed.
+
+
 ## TODO
 - Shared resource support using [moko-resources](https://github.com/icerockdev/moko-resources)
 - MultiModule structure in iOS project
